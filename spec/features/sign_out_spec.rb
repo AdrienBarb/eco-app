@@ -7,7 +7,7 @@ RSpec.feature "Signed-in users can sign out" do
     login_as(user)
   end
 
-  scenario do
+  scenario "Signed-in users can sign out" do
     visit "/"
 
     click_link "Sign out"
