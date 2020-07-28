@@ -10,11 +10,11 @@ RSpec.feature "Signed-in users can sign out" do
   scenario "Signed-in users can sign out" do
     visit "/"
 
-    click_link "Sign out"
+    click_link "Se déconnecter"
 
-    expect(page).to have_content "Signed out successfully."
-    expect(page).to have_link "Sign in"
-    expect(page).to have_link "Sign up"
-    expect(page).not_to have_link "Sign out"
+    expect(page).to have_content "Déconnecté."
+    expect(page).to have_link "Se connecter"
+    expect(page).to have_link "S'enregistrer"
+    expect(page).not_to have_link "Se déconnecter"
   end
 end

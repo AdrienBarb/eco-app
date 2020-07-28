@@ -7,6 +7,7 @@ FactoryBot.define do
     city {"Pont de roide"}
     zip_code {25150}
     country {"France"}
+    url_linkedin {"https://www.linkedin.com/in/adrien-barbier-5b479598/"}
     sequence(:email) { |n| "test#{n}@example.com" }
     password {"password"}
 
