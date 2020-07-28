@@ -1,7 +1,20 @@
-<h1>Mon profil</h1>
 
-<%= @user.first_name %>
-<%= @user.last_name %>
-<%= @user.title %>
-<%= @user.description %>
-<%= link_to 'Modifier', edit_user_path  %>
+<div class="profil-card">
+  <%= link_to edit_user_path, class: 'edit-link' do %>
+    <i class="fas fa-edit"></i>
+  <% end %>
+  <div class="profil-card-left">
+    <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+    <h3><%= @user.title %></h3>
+  </div>
+  <span class="line"></span>
+  <div class="profil-card-right">
+    <p><%= @user.description %></p>
+  </div>
+</div>
+
+
+
+
+
+

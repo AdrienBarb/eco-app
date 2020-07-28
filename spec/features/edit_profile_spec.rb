@@ -8,9 +8,7 @@ RSpec.feature "User can edit their own profile" do
   end
 
   scenario "With valid details" do
-    visit user_path(user)
-
-    click_link "Modifier"
+    visit edit_user_path(user)
 
     fill_in "Title", with: "Ingénieur projet"
     fill_in "Description", with: "J'ai beaucoup de compétence"

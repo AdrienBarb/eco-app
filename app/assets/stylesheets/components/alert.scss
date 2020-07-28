@@ -1,0 +1,18 @@
+.alert {
+  max-width: 500px;
+  max-width: 400;
+  margin: 1rem auto;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 20px;
+}
+
+
+.alert-notice {
+  color: white;
+  background-color: rgba(147, 192, 164, 0.6)
+}
+.alert-alert {
+  color: white;
+  background-color: rgba(209, 96, 61, 0.6)
+}

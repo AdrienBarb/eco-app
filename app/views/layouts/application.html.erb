@@ -11,31 +11,41 @@
 
   <body>
 
-    <div class="nav-bar">
-      <div class="navigation-link">
-        <ul>
-          <li class="<%= "active" if current_page?("/") %>"><%= link_to 'Home', root_path %></li>
+    <div class="nav-bar-wraper">
+      <div class="nav-bar">
+        <div class="navigation-link">
+          <ul>
+            <li class="<%= "active" if current_page?("/") %>"><%= link_to 'Home', root_path %></li>
+            <% if user_signed_in? %>
+              <li class="<%= "active" if current_page?(user_path(current_user)) %>"><%= link_to 'Mon profil', user_path(current_user)  %></li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="connect-link">
           <% if user_signed_in? %>
-            <li class="<%= "active" if current_page?(user_path(current_user)) %>"><%= link_to 'Mon profil', user_path(current_user)  %></li>
-          <% end %>
-        </ul>
-      </div>
-      <div class="connect-link">
-        <ul>
-          <% if user_signed_in? %>
-            <li><%= current_user.first_name %></li>
-            <li><%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete  %></li>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.first_name %>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: "dropdown-item"%>
+              </div>
+            </div>
           <% else %>
-            <li><%= link_to "S'enregistrer", new_user_registration_path  %></li>
-            <li><%= link_to 'Se connecter', new_user_session_path  %></li>
+            <ul>
+              <li><%= link_to "S'enregistrer", new_user_registration_path  %></li>
+              <li><%= link_to 'Se connecter', new_user_session_path  %></li>
+            </ul>
           <% end %>
-        </ul>
+        </div>
       </div>
     </div>
 
 
   <% flash.each do |key, message| %>
+    <div class="alert alert-<%= key %>">
         <%= message %>
+    </div>
   <% end %>
 
       <%= yield %>
