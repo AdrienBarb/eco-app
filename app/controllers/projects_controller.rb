@@ -39,6 +39,9 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project.destroy
+    flash[:notice] = "Votre projet a bien été supprimé !"
+    redirect_to user_path(@user)
   end
 
   private
