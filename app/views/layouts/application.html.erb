@@ -24,8 +24,11 @@
         <div class="connect-link">
           <% if user_signed_in? %>
             <div class="dropdown">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <%= current_user.first_name %>
+              <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="connected-button">
+                  <%= image_tag current_user.avatar.url %>
+                  <%= current_user.first_name %>
+                </div>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: "dropdown-item"%>
