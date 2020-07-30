@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = @user.project.build(project_params)
-    if @project.save!
+    if @project.save
       flash[:notice] = "Votre projet a bien été crée !"
       redirect_to user_project_path(@user, @project)
     else
@@ -25,9 +25,17 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
   end
 
   def update
+    if @project.update(project_params)
+      flash[:notice] = "Votre projet a bien été modifié !"
+      redirect_to user_project_path(@user, @project)
+    else
+      flash[:alert] = "Votre projet n'a pas été modifié !"
+      render :edit
+    end
   end
 
   def destroy

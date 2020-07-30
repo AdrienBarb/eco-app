@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :category do
-    category { "MyString" }
+    category { "Banque" }
   end
 end

@@ -24,9 +24,13 @@
 <%= link_to 'Créer un projet', new_user_project_path(@user)  %>
 
 <% @projects.each do |project| %>
-<h1> <%= project.name %> </h1>
-<p><%= project.description %></p>
+  <%= link_to  user_project_path(@user, project) do %>
+    <h1> <%= project.name %> </h1>
+  <% end %>
+  <p><%= project.description %></p>
+  <p><%= project.category.category %></p>
 <% end %>
+
 
 
 

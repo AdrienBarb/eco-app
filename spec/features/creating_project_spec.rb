@@ -1,7 +1,8 @@
 require "rails_helper"
 
-RSpec.feature "User can edit their own profile" do
+RSpec.feature "User can create project" do
   let!(:user) { FactoryBot.create(:user) }
+  let!(:category) { FactoryBot.create(:category) }
 
   before do
     login_as(user)
@@ -13,7 +14,8 @@ RSpec.feature "User can edit their own profile" do
     click_link "Créer un projet"
     fill_in "Name", with: "Un super projet"
     fill_in "Description", with: "Une voiture volante"
-    click_button "Créer"
+    select 'Banque', from: 'Category'
+    click_button "Valider"
 
     expect(page).to have_content("Votre projet a bien été crée !")
     expect(page).to have_content("Un super projet")
