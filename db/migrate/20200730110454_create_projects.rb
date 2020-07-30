@@ -3,7 +3,6 @@ class CreateProjects < ActiveRecord::Migration[6.0]
     create_table :projects do |t|
       t.string :name
       t.text :description
-      t.string :category
       t.integer :upvote, default: 0
       t.integer :downvote, default: 0
       t.string :website_url

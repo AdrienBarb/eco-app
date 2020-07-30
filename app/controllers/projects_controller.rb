@@ -10,6 +10,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = @user.project.build
+    @categories = Category.all
   end
 
   def create
@@ -43,6 +44,6 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :category, :website_url, :linkedin_url, :twitter_url, :facebook_url, :instagram_url)
+    params.require(:project).permit(:name, :description, :website_url, :linkedin_url, :twitter_url, :facebook_url, :instagram_url, :category_id)
   end
 end
