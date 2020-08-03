@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
     @project = @user.project.build(project_params)
     if @project.save
       flash[:notice] = "Votre projet a bien été crée !"
-      redirect_to user_project_path(@user, @project)
+      redirect_to project_path(@project)
     else
       flash[:alert] = "Votre projet n'a pas été crée"
       render :new
@@ -31,7 +31,7 @@ class ProjectsController < ApplicationController
   def update
     if @project.update(project_params)
       flash[:notice] = "Votre projet a bien été modifié !"
-      redirect_to user_project_path(@user, @project)
+      redirect_to project_path(@project)
     else
       flash[:alert] = "Votre projet n'a pas été modifié !"
       render :edit
@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
   end
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = current_user
   end
 
   def project_params

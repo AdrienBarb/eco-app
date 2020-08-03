@@ -10,7 +10,7 @@ RSpec.feature "User can edit their projects" do
   end
 
   scenario "With valid details" do
-    visit user_project_path(user, project)
+    visit project_path(project)
 
     click_link "Modifier mon projet"
     fill_in "Name", with: "Un autre super projet"

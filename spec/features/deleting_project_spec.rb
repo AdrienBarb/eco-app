@@ -10,7 +10,7 @@ RSpec.feature "Users can delete their projects" do
   end
 
   scenario "User can delete a project" do
-    visit user_project_path(user, project)
+    visit project_path(project)
 
     click_link "Suprimer"
 

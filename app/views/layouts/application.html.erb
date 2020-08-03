@@ -16,6 +16,9 @@
         <div class="navigation-link">
           <ul>
             <li class="<%= "active" if current_page?("/") %>"><%= link_to 'Home', root_path %></li>
+            <% admins_only do %>
+              <%= link_to 'Admin', admin_root_path %>
+            <% end %>
             <% if user_signed_in? %>
               <li class="<%= "active" if current_page?(user_path(current_user)) %>"><%= link_to 'Mon profil', user_path(current_user)  %></li>
             <% end %>
