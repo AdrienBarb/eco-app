@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  has_many :project
+  has_many :project, dependent: :destroy
 end
