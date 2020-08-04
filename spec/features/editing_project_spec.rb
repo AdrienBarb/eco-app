@@ -7,6 +7,7 @@ RSpec.feature "User can edit their projects" do
 
   before do
     login_as(user)
+    assign_role!(user, :editor, project)
   end
 
   scenario "With valid details" do

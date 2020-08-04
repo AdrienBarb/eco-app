@@ -3,9 +3,11 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def index
+    @projects = policy_scope(Project)
   end
 
   def show
+    authorize @project, :show?
   end
 
   def new
@@ -14,6 +16,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+    authorize @project, :update?
     @project = @user.project.build(project_params)
     if @project.save
       flash[:notice] = "Votre projet a bien été crée !"
@@ -25,6 +28,7 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    authorize @project, :update?
     @categories = Category.all
   end
 
@@ -39,6 +43,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    authorize @project, :destroy?
     @project.destroy
     flash[:notice] = "Votre projet a bien été supprimé !"
     redirect_to user_path(@user)

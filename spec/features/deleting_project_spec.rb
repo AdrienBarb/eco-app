@@ -7,6 +7,7 @@ RSpec.feature "Users can delete their projects" do
 
   before do
     login_as(user)
+    assign_role!(user, :manager, project)
   end
 
   scenario "User can delete a project" do
