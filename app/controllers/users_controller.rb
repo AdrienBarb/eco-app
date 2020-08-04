@@ -7,9 +7,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    authorize @user, :edit?
   end
 
   def update
+    authorize @user, :update?
     if @user.update(user_params)
       flash[:notice] = "Vous informations ont bien été modifiés"
       redirect_to user_path(@user)
