@@ -5,6 +5,14 @@ class ProjectPolicy < ApplicationPolicy
     end
   end
 
+  def new?
+    true
+  end
+
+  def create?
+    new?
+  end
+
   def show?
     true
   end

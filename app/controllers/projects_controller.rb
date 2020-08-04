@@ -12,13 +12,15 @@ class ProjectsController < ApplicationController
 
   def new
     @project = @user.project.build
+    authorize @project, :new?
     @categories = Category.all
   end
 
   def create
-    authorize @project, :update?
     @project = @user.project.build(project_params)
+    authorize @project, :create?
     if @project.save
+      Role.create(role: 'manager', user: @user, project: @project)
       flash[:notice] = "Votre projet a bien été crée !"
       redirect_to project_path(@project)
     else
@@ -33,6 +35,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    authorize @project, :update?
     if @project.update(project_params)
       flash[:notice] = "Votre projet a bien été modifié !"
       redirect_to project_path(@project)
