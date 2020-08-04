@@ -7,6 +7,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   has_many :project, dependent: :destroy
+  has_many :roles
 
   def active_for_authentication?
     super && archived_at.nil?
@@ -28,5 +29,9 @@ class User < ApplicationRecord
 
   def archive
     self.update(archived_at: Time.now)
+  end
+
+  def role_on(project)
+    roles.find_by(project_id: project).try(:name)
   end
 end

@@ -1,0 +1,19 @@
+<%= form_for @project, :url => {:controller => "projects", :action => "update_roles"} do |f| %>
+
+<table class="roles">
+  <% @project.users.each do |user| %>
+    <tr>
+      <th>
+        <%= label_tag dom_id(user), user.full_name %>
+      </th>
+      <td>
+        <%= select_tag dom_id(user), options_for_select(roles, user.role_on(@project)), name: "roles[#{@project.id}]", include_blank: true %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+  <div class="actions">
+    <%= f.submit "Valider"%>
+  </div>
+<% end %>

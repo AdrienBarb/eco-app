@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_user, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:new, :create, :edit, :update, :edit_roles, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :edit_roles, :update_roles, :destroy]
 
   def index
     @projects = policy_scope(Project)
@@ -47,6 +47,24 @@ class ProjectsController < ApplicationController
     @project.destroy
     flash[:notice] = "Votre projet a bien été supprimé !"
     redirect_to user_path(@user)
+  end
+
+  def edit_roles
+    authorize @project, :edit_roles?
+    @users = @project.users
+  end
+
+  def update_roles
+    @user = User.find(params[:user_id])
+    role_data = params.fetch(:roles, [])
+    puts params
+    puts '_________________'
+    puts role_data
+    role_data.each do |project_id, role_name|
+      if role_name.present?
+        @user.roles.build(project_id: project_id, role: role_name)
+      end
+    end
   end
 
   private
