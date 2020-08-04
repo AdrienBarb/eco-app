@@ -17,7 +17,7 @@ class ProjectPolicy < ApplicationPolicy
     user.try(:admin?) || record.roles.exists?(user_id: user, role: 'manager')
   end
 
-  def edit_roles?
-    user.try(:admin?) || record.roles.exists?(user_id: user, role: 'manager')
+  def update_roles?
+    destroy?
   end
 end

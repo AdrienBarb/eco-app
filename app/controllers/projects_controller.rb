@@ -50,21 +50,25 @@ class ProjectsController < ApplicationController
   end
 
   def edit_roles
-    authorize @project, :edit_roles?
+    authorize @project, :update_roles?
     @users = @project.users
   end
 
   def update_roles
-    @user = User.find(params[:user_id])
+    authorize @project, :update_roles?
     role_data = params.fetch(:roles, [])
     puts params
     puts '_________________'
     puts role_data
-    role_data.each do |project_id, role_name|
+    role_data.each do |user_id, role_name|
       if role_name.present?
-        @user.roles.build(project_id: project_id, role: role_name)
+        Role.find_by(user_id: user_id).delete
+        @role = Role.new(user_id: user_id, project: @project, role: role_name)
+        @role.save!
       end
     end
+    flash[:notice] = "Les roles ont bien été modifié"
+    redirect_to project_path(@project)
   end
 
   private

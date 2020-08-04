@@ -25,6 +25,10 @@ user1 = User.new(email: 'aurore@gmail.com', password: 'password', first_name: 'A
 user1.save!
 user2 = User.new(email: 'adrien@gmail.com', password: 'password', first_name: 'Adrien', last_name: 'Barbier', phone_number: '06 79 09 38 18', city: 'Lyon', zip_code: 69000, country: 'France', title: 'Ingénieur', description: "Mes trois années d'apprentissage dans l'industrie m'ont permis d'acquérir de nombreuses compétences techniques. En parallèle, j'ai découvert le monde du commerce en créant mes propres entreprises. La gestion de projet, le travail d'équipe et la relation client sont mes points forts.", admin: true, url_linkedin: 'https://www.linkedin.com/in/adrien-barbier-5b479598/', avatar: '/uploads/IMG_7030.jpeg')
 user2.save!
+user3 = User.new(email: 'marc@gmail.com', password: 'password', first_name: 'Marc', last_name: 'Barbier', phone_number: '06 79 09 38 18', city: 'Lyon', zip_code: 69000, country: 'France', title: 'Ingénieur', description: "Mes trois années d'apprentissage dans l'industrie m'ont permis d'acquérir de nombreuses compétences techniques. En parallèle, j'ai découvert le monde du commerce en créant mes propres entreprises. La gestion de projet, le travail d'équipe et la relation client sont mes points forts.", admin: false, url_linkedin: 'https://www.linkedin.com/in/adrien-barbier-5b479598/', avatar: '/uploads/IMG_7030.jpeg')
+user3.save!
+user4 = User.new(email: 'paul@gmail.com', password: 'password', first_name: 'paul', last_name: 'Barbier', phone_number: '06 79 09 38 18', city: 'Lyon', zip_code: 69000, country: 'France', title: 'Ingénieur', description: "Mes trois années d'apprentissage dans l'industrie m'ont permis d'acquérir de nombreuses compétences techniques. En parallèle, j'ai découvert le monde du commerce en créant mes propres entreprises. La gestion de projet, le travail d'équipe et la relation client sont mes points forts.", admin: false, url_linkedin: 'https://www.linkedin.com/in/adrien-barbier-5b479598/', avatar: '/uploads/IMG_7030.jpeg')
+user4.save!
 
 project1 = Project.new(name: 'Calendar.AI', description: "Calendar.AI is a calendar app and appointment scheduler that supercharges your meetings with insights about the people and companies you meet. View work history, social profiles, news and more. Save hours scheduling meetings with your own scheduling assistant.", website_url: "https://www.sync.ai/calendar-ai/", user: user1, category: Category.find(1))
 project1.save!
@@ -36,6 +40,14 @@ project4 = Project.new(name: 'purME', description: "purME is an all-new type of 
 project4.save!
 project5 = Project.new(name: 'Glimpse 2.0', description: "Glimpse matches large groups into 1:1 time-boxed video chats. We build authentic relationships within any large groups: from your team at work, networking during a conference, to college social group rush!", website_url: "https://app.joinglimpse.com/?ref=producthunt", user: user2, category: Category.find(1))
 project5.save!
+
+role1 = Role.new(role: 'Editor', user: user2, project: project4)
+role1.save!
+role2 = Role.new(role: 'Editor', user: user3, project: project4)
+role2.save!
+role3 = Role.new(role: 'Editor', user: user4, project: project4)
+role3.save!
+
 
 
 

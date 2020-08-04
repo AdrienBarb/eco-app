@@ -7,7 +7,7 @@
         <%= label_tag dom_id(user), user.full_name %>
       </th>
       <td>
-        <%= select_tag dom_id(user), options_for_select(roles, user.role_on(@project)), name: "roles[#{@project.id}]", include_blank: true %>
+        <%= select_tag dom_id(user), options_for_select(roles, user.role_on(@project)), name: "roles[#{user.id}]", include_blank: true %>
       </td>
     </tr>
   <% end %>
