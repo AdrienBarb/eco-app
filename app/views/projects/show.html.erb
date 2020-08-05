@@ -3,6 +3,15 @@
   <p><%= @project.description %></p>
   <p><%= @project.category.category %></p>
 
+  <div id="tag">
+    <% if @project.tags.any? %>
+      <h2>Tags:</h2>
+      <% @project.tags.each do |tag| %>
+        <%= render "tags/tag", tag: tag, project: @project %>
+      <% end %>
+    <% end %>
+  </div>
+
 
   <% if policy(@project).update? %>
     <%= link_to 'Modifier mon projet', edit_project_path(@project) %>

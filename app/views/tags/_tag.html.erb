@@ -1,0 +1,4 @@
+<div class="tag">
+  <%= link_to "X".html_safe, remove_project_tag_path(project, tag), method: :delete, remote: true, class: "remove", title: "remove" %>
+  <%= tag.name %>
+</div>

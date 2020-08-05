@@ -28,4 +28,8 @@ class ProjectPolicy < ApplicationPolicy
   def update_roles?
     destroy?
   end
+
+  def tag?
+    destroy?
+  end
 end

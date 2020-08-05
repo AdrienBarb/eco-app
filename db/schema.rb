@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_04_062515) do
+ActiveRecord::Schema.define(version: 2020_08_05_072050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2020_08_04_062515) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
+  create_table "projects_tags", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "project_id", null: false
+    t.index ["project_id", "tag_id"], name: "index_projects_tags_on_project_id_and_tag_id"
+    t.index ["tag_id", "project_id"], name: "index_projects_tags_on_tag_id_and_project_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "role"
@@ -47,6 +54,10 @@ ActiveRecord::Schema.define(version: 2020_08_04_062515) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["project_id"], name: "index_roles_on_project_id"
     t.index ["user_id"], name: "index_roles_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

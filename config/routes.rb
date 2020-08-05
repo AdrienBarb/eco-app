@@ -20,6 +20,12 @@ Rails.application.routes.draw do
       get :edit_roles
       patch :update_roles
     end
+
+    resources :tags, only: [] do
+      member do
+        delete :remove
+      end
+    end
   end
 
   root to: "pages#home"
