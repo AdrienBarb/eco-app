@@ -63,3 +63,4 @@ gem 'font-awesome-sass', '~> 5.13.0'
 gem 'carrierwave', '~> 2.0'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+gem 'aws-sdk-s3', require: false

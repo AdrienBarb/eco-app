@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :project, dependent: :destroy
   has_many :roles
+  has_one_attached :photo
 
   def active_for_authentication?
     super && archived_at.nil?

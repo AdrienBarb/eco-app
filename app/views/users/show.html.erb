@@ -6,7 +6,7 @@
   <div class="profil-card-left">
     <div class="picture">
       <% if current_user.avatar.url %>
-        <%= image_tag @user.avatar.url %>
+        <%= image_tag(@user.photo, width: 200) if @user.photo.attached? %>
       <% end %>
     </div>
     <div class="user-info">
