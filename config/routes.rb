@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
 
-  resources :projects, only: [:show, :index, :new, :create, :edit, :update, :destroy] do
+  resources :projects, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     member do
       get :edit_roles
       patch :update_roles
@@ -28,5 +28,6 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: "pages#home"
+  root to: "projects#index" do
+  end
 end

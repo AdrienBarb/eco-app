@@ -1,4 +1,10 @@
 
+<%= form_tag projects_path, role: 'search', method: :get do |f| %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= button_tag "search", name: nil %>
+<% end %>
+
+
 <% @projects.each do |project| %>
   <%= link_to project_path(project) do %>
     <h1> <%= project.name %> </h1>
@@ -6,3 +12,6 @@
   <p><%= project.description %></p>
   <p><%= project.category.category %></p>
 <% end %>
+
+
+

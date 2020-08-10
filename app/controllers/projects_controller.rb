@@ -1,9 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :set_user, only: [:new, :create, :edit, :update, :edit_roles, :destroy]
   before_action :set_project, only: [:show, :edit, :update, :edit_roles, :update_roles, :destroy]
+  skip_after_action :verify_authorized, :verify_policy_scoped, only: [:search, :index]
 
   def index
-    @projects = policy_scope(Project)
+    @projects = Project.search((params[:q].present? ? params[:q] : '*')).records
   end
 
   def show
@@ -72,6 +73,13 @@ class ProjectsController < ApplicationController
     end
     flash[:notice] = "Les roles ont bien été modifié"
     redirect_to project_path(@project)
+  end
+
+  def search
+    if params[:q].present?
+      @projects = Project.search(params[:q]).records
+      render "projects/index"
+    end
   end
 
   private
