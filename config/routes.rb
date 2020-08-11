@@ -30,6 +30,8 @@ Rails.application.routes.draw do
         delete :remove
       end
     end
+
+    resources :comments, only: [:new, :create]
   end
 
   root to: "projects#index" do

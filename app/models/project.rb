@@ -5,6 +5,7 @@ class Project < ApplicationRecord
   has_many :users, through: :roles
   has_and_belongs_to_many :tags, uniq: true
   has_many :votes
+  has_many :comments
 
   attr_accessor :tag_names
 

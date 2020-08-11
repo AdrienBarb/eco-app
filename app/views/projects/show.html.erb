@@ -47,6 +47,18 @@
   <% end %>
 </div>
 
+<div id="comments">
+  <h1>Commentaires:</h1>
+  <%= link_to 'Laisser un commentaire', new_project_comment_path(@project) %>
+  <% if @project.comments.any? %>
+    <ul>
+      <% @project.comments.each do |comment| %>
+        <li> <%= render 'comments/comment', comment: comment %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
 
 
 
