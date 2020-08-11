@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create]
   end
 
+  resources :comments, only: [] do
+    resources :answers, only: [:new, :create]
+  end
+
   root to: "projects#index" do
   end
 end

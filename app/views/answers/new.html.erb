@@ -1,0 +1,11 @@
+<%= form_for [@comment, @answer] do |f| %>
+
+  <div class="field">
+    <%= f.label :answer, name: 'Answer' %><br>
+    <%= f.text_field :answer %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Valider"%>
+  </div>
+<% end %>

@@ -1,3 +1,15 @@
 <h2><%= comment.user.full_name %></h2>
 <p>Il y a <%= time_ago_in_words(comment.created_at) %></p>
 <p><%= comment.comment %></p>
+<%= link_to 'Répondre', new_comment_answer_path(comment) %>
+
+<h3>Réponses:</h3>
+<% if comment.answers.any? %>
+  <ul>
+    <% comment.answers.each do |answer| %>
+      <li>
+        <%= render 'answers/answer', answer: answer %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
