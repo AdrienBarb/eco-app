@@ -1,0 +1,44 @@
+#project-show-wrap {
+  max-width: 990px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.1);
+
+}
+
+.project-show-project-description {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .project-description {
+    max-width: 70%;
+
+    h4 {
+      color: gray;
+      font-size: 12px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .buttons {
+      display: flex;
+    }
+  }
+
+  .project-show-vote {
+    text-align: center;
+  }
+}
+
+#contributor {
+  margin: 1rem;
+}
+
+

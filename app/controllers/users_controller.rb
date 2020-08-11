@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
+  def index
+    @users = policy_scope(User)
+  end
+
   def show
     authorize @user, :show?
     @projects = Project.where(user: @user)

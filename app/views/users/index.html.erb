@@ -1,0 +1,6 @@
+<% @users.each do |user| %>
+  <%= link_to user_path(user) do %>
+    <h1> <%= user.full_name %> </h1>
+  <% end %>
+  <h3> <%= user.title %> </h3>
+<% end %>

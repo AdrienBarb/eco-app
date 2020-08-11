@@ -16,6 +16,12 @@
         <div class="navigation-link">
           <ul>
             <li class="<%= "active" if current_page?("/") %>"><%= link_to 'Home', root_path %></li>
+            <li>
+              <%= form_tag projects_path, role: 'search', method: :get do |f| %>
+                <%= text_field_tag :q, params[:q] %>
+                <%= button_tag "search", name: nil %>
+              <% end %>
+            </li>
             <% admins_only do %>
               <%= link_to 'Admin', admin_root_path %>
             <% end %>
