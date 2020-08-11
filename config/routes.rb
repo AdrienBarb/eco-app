@@ -21,6 +21,10 @@ Rails.application.routes.draw do
       patch :update_roles
     end
 
+    member do
+      patch :upvote
+    end
+
     resources :tags, only: [] do
       member do
         delete :remove

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "User can create project" do
+RSpec.feature "User can view project" do
   let!(:user) { FactoryBot.create(:user) }
   let!(:category) { FactoryBot.create(:category) }
   let!(:project) { FactoryBot.create(:project, user: user, category: category) }

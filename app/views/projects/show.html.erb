@@ -12,6 +12,11 @@
     <% end %>
   </div>
 
+  <div id="vote">
+    <%= @project.votes.count %>
+    <%= link_to 'Voter', upvote_project_path(@project), method: :patch %>
+  </div>
+
 
   <% if policy(@project).update? %>
     <%= link_to 'Modifier mon projet', edit_project_path(@project) %>

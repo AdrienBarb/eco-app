@@ -1,7 +1,8 @@
 class ProjectsController < ApplicationController
-  before_action :set_user, only: [:new, :create, :edit, :update, :edit_roles, :destroy]
-  before_action :set_project, only: [:show, :edit, :update, :edit_roles, :update_roles, :destroy]
+  before_action :set_user, only: [:new, :create, :edit, :update, :edit_roles, :destroy, :upvote]
+  before_action :set_project, only: [:show, :edit, :update, :edit_roles, :update_roles, :destroy, :upvote]
   skip_after_action :verify_authorized, :verify_policy_scoped, only: [:search, :index]
+  before_action :authenticate_user!, only: [:upvote]
 
   def index
     @projects = Project.search((params[:q].present? ? params[:q] : '*')).records
@@ -80,6 +81,17 @@ class ProjectsController < ApplicationController
       @projects = Project.search(params[:q]).records
       render "projects/index"
     end
+  end
+
+  def upvote
+    authorize @project, :upvote?
+    @vote = @project.votes.build(user: @user)
+    unless Vote.find_by(user: @user, project: @project).nil?
+      flash[:alert] = "Vous avez déja voté !"
+    else
+      @vote.save!
+    end
+    redirect_to project_path(@project)
   end
 
   private
