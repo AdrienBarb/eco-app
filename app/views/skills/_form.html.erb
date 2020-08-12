@@ -1,0 +1,19 @@
+<%= form_for skill do |f| %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </div>
+
+  <%= f.label :rate %>
+  <%= f.select :rate, options_for_select((1..10).to_a.map{|s| ["#{s}", s]})%>
+
+  <div class="actions">
+    <%= f.submit "Valider"%>
+  </div>
+<% end %>

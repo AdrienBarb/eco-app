@@ -32,6 +32,20 @@
   <% end %>
 </div>
 
+<div id="skills">
+  <% if @user == current_user %>
+    <%= link_to 'Editer mes compétences', skills_path %>
+  <% end %>
+  <h1>Mes compétences:</h1>
+  <% if @user.skills.any? %>
+    <% @user.skills.each do |skill| %>
+      <h2>  <%= skill.title %></h2>
+      <p> <%= skill.rate %> </p>
+      <p> <%= skill.description %> </p>
+    <% end %>
+  <% end %>
+</div>
+
 
 
 

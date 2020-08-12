@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :project, dependent: :destroy
   has_many :roles
+  has_many :skills, dependent: :destroy
   has_one_attached :photo
 
   def active_for_authentication?

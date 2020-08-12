@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_111835) do
+ActiveRecord::Schema.define(version: 2020_08_12_073249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(version: 2020_08_11_111835) do
     t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "rate"
+    t.index ["user_id"], name: "index_skills_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
   end
@@ -143,6 +153,7 @@ ActiveRecord::Schema.define(version: 2020_08_11_111835) do
   add_foreign_key "projects", "users"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
+  add_foreign_key "skills", "users"
   add_foreign_key "votes", "projects"
   add_foreign_key "votes", "users"
 end

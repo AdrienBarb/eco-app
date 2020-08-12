@@ -1,0 +1,13 @@
+<div id="skills">
+    <%= link_to 'Ajouter une compétences', new_skill_path %>
+  <h1>Mes compétences:</h1>
+  <% if @skills.any? %>
+    <% @skills.each do |skill| %>
+      <h2> <%= skill.title %></h2>
+      <p> <%= skill.rate %> </p>
+      <p> <%= skill.description %> </p>
+      <%= link_to 'Modifier cette compétence', edit_skill_path(skill) %>
+      <%= link_to "Suprimer", skill_path(skill), method: :delete, data: { confirm: "Are you sure you want to delete this ticket?"}, class: "delete" %>
+    <% end %>
+  <% end %>
+</div>

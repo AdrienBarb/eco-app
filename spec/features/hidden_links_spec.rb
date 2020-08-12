@@ -9,7 +9,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "cannot see editing link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).not_to have_link "Modifier mon projet"
       end
     end
@@ -23,7 +23,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "cannot see deleting link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).not_to have_link "Supprimer"
       end
     end
@@ -37,7 +37,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "cannot see editing link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).not_to have_link "Modifier mon projet"
       end
     end
@@ -51,7 +51,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "cannot see deleting link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).not_to have_link "Supprimer"
       end
     end
@@ -65,7 +65,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "Can see editing link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).to have_link "Modifier mon projet"
       end
     end
@@ -79,7 +79,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "cannot see deleting link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).not_to have_link "Supprimer"
       end
     end
@@ -93,7 +93,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "can see editing link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).to have_link "Modifier mon projet"
       end
     end
@@ -107,7 +107,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "can see deleting link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).not_to have_link "Supprimer"
       end
     end
@@ -120,7 +120,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "can see editing link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).to have_link "Modifier mon projet"
       end
     end
@@ -134,7 +134,7 @@ RSpec.feature "Users can only see the appropriate links" do
 
     scenario "can see deleting link" do
       visit project_path(project)
-      within("#project") do
+      within(".project-show-project-description") do
         expect(page).not_to have_link "Supprimer"
       end
     end
