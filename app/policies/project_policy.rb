@@ -10,7 +10,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def create?
-    new?
+    :new?
   end
 
   def show?

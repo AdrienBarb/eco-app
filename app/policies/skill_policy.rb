@@ -5,8 +5,12 @@ class SkillPolicy < ApplicationPolicy
     end
   end
 
+  def index?
+    user
+  end
+
   def new?
-    true
+    user
   end
 
   def create?
@@ -14,7 +18,7 @@ class SkillPolicy < ApplicationPolicy
   end
 
   def edit?
-    true
+    record.user == user
   end
 
   def update?
@@ -22,6 +26,6 @@ class SkillPolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
+    record.user == user
   end
 end

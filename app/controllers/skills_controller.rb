@@ -3,8 +3,10 @@ class SkillsController < ApplicationController
   before_action :set_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_skill, only: [:edit, :update, :destroy]
 
+
   def index
     @skills = policy_scope(Skill)
+    authorize @skills, :index?
   end
 
   def new
