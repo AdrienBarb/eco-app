@@ -6,9 +6,9 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
-  has_many :project, dependent: :destroy
+  has_many :project
   has_many :roles
-  has_many :skills, dependent: :destroy
+  has_many :skills
   has_one_attached :photo
 
   def active_for_authentication?
