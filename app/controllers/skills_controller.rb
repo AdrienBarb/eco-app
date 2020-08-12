@@ -1,7 +1,7 @@
 class SkillsController < ApplicationController
 
-  before_action :set_user, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_skill, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:new, :create, :edit, :update, :destroy, :recommend]
+  before_action :set_skill, only: [:edit, :update, :destroy, :recommend]
 
 
   def index
@@ -46,6 +46,17 @@ class SkillsController < ApplicationController
     @skill.destroy
     flash[:notice] = 'Votre compétence a bien été suprimée'
     redirect_to skills_path
+  end
+
+  def recommend
+    authorize @skill, :recommend?
+    @recommendation = @skill.recommendations.build(user: @user)
+    unless Recommendation.find_by(user: @user, skill: @skill).nil?
+      flash[:alert] = "Vous ne pouvez pas recommender une compétences 2 fois"
+    else
+      @recommendation.save!
+    end
+    redirect_to user_path(@skill.user)
   end
 
   private

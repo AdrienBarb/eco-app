@@ -42,6 +42,10 @@
       <h2>  <%= skill.title %></h2>
       <p> <%= skill.rate %> </p>
       <p> <%= skill.description %> </p>
+      <% if skill.recommendations.any? %>
+        <p><%= skill.recommendations[0].user.full_name %> et <%= skill.recommendations.count - 1 %> autres utilisateurs ont recommendé cette compétences</p>
+      <% end %>
+      <%= link_to 'Recommander', recommend_skill_path(skill), method: :patch %>
     <% end %>
   <% end %>
 </div>

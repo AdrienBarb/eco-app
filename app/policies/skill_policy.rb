@@ -28,4 +28,8 @@ class SkillPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def recommend?
+    record.user != user
+  end
 end

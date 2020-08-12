@@ -62,9 +62,6 @@ class ProjectsController < ApplicationController
   def update_roles
     authorize @project, :update_roles?
     role_data = params.fetch(:roles, [])
-    puts params
-    puts '_________________'
-    puts role_data
     role_data.each do |user_id, role_name|
       if role_name.present?
         Role.find_by(user_id: user_id).delete
