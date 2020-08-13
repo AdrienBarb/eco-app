@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_114642) do
+ActiveRecord::Schema.define(version: 2020_08_13_073109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,11 @@ ActiveRecord::Schema.define(version: 2020_08_12_114642) do
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comment_watchers", id: false, force: :cascade do |t|
+    t.bigint "comment_id", null: false
+    t.bigint "user_id", null: false
   end
 
   create_table "comments", force: :cascade do |t|
