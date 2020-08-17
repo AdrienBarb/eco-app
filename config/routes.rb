@@ -46,4 +46,15 @@ Rails.application.routes.draw do
 
   root to: "projects#index" do
   end
+
+  namespace :api do
+    namespace :v1 do
+      resources :projects do
+        member do
+          get :edit_roles
+          patch :update_roles
+        end
+      end
+    end
+  end
 end

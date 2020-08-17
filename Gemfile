@@ -65,4 +65,6 @@ gem 'carrierwave', '~> 2.0'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'aws-sdk-s3', require: false
+gem 'active_model_serializers', '~> 0.10.0'
+
 
