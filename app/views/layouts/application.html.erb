@@ -42,14 +42,12 @@
                 </div>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <%= link_to "Modifier mes informations", edit_user_registration_path %>
-                <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete, class: "dropdown-item"%>
+
               </div>
             </div>
           <% else %>
             <ul>
-              <li><%= link_to "S'enregistrer", new_user_registration_path  %></li>
-              <li><%= link_to 'Se connecter', new_user_session_path  %></li>
+
             </ul>
           <% end %>
         </div>

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: "projects#index"
+
   namespace :admin do
     root 'application#index'
 
@@ -44,6 +46,21 @@ Rails.application.routes.draw do
     resources :answers, only: [:new, :create]
   end
 
-  root to: "projects#index" do
+
+
+  namespace :api do
+    namespace :v1 do
+      devise_for :users, controllers: { registrations: 'api/v1/registrations' }
+
+      resources :projects do
+        member do
+          get :edit_roles
+          patch :update_roles
+        end
+      end
+
+    # resource :sessions, only: [:create, :destroy, :show]
+    resources :users, only: [:create]
+    end
   end
 end

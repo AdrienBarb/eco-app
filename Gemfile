@@ -65,4 +65,6 @@ gem 'carrierwave', '~> 2.0'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'aws-sdk-s3', require: false
+gem 'jwt'
+gem 'pry', '~> 0.12.2'
 
