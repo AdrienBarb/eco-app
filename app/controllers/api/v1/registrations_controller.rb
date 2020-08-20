@@ -25,7 +25,7 @@ class Api::V1::RegistrationsController < Devise::RegistrationsController
     @user = User.create(sign_up_params)
 
     if @user.save
-      render :create
+      render json: @user
     else
       render :status => 400,
              :json => {:message => @user.errors.full_messages}

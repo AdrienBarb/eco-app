@@ -1,6 +1,4 @@
 class Api::V1::ProjectsController < Api::V1::ApplicationController
-  skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!
 
 
   before_action :set_user, only: [:new, :create, :edit, :update, :edit_roles, :destroy, :upvote]
@@ -8,18 +6,17 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
 
 
   def index
-    projects = Project.search((params[:q].present? ? params[:q] : '*')).records
-    render json: projects
+    @projects = Project.search((params[:q].present? ? params[:q] : '*')).records
+    render json: @projects
   end
 
   def show
-    authorize @project, :show?
     render json: @project
   end
 
   def create
     @project = @user.project.build(project_params)
-    binding.pry
+
     if @project.save
       Role.create(role: 'manager', user: @user, project: @project)
       render json: @project
@@ -44,31 +41,39 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
     end
   end
 
+  def update_roles
+    role_data = params.fetch(:roles, [])
+    role_data.each do |user_id, role_name|
+      if role_name.present?
+        Role.find_by(user_id: user_id).delete
+        @role = Role.new(user_id: user_id, project: @project, role: role_name)
+        @role.save!
+      end
+    end
+    head(:created)
+  end
+
+  def upvote
+    @vote = @project.votes.build(user: @user)
+    unless Vote.find_by(user: @user, project: @project).nil?
+      render json: { error: "Vous avez deja voté" }, status: 422
+    else
+      @vote.save!
+      head(:created)
+    end
+  end
+
   private
 
-    def set_project
-      @project = Project.find(params[:id])
-    end
+  def set_project
+    @project = Project.find(params[:id])
+  end
 
-    def set_user
-      @user = current_user
-      binding.pry
-    end
+  def set_user
+    @user = current_user
+  end
 
-    def project_params
-      params.require(:project).permit(:name, :description, :website_url, :linkedin_url, :twitter_url, :facebook_url, :instagram_url, :category_id, :tag_names)
-    end
-
-    def payload
-      WebToken.decode(get_token)
-    end
-
-    def get_token
-      auth_header.present? && auth_header.split(' ').last
-    end
-
-    def auth_header
-      request.headers['Authorization']
-    end
-
+  def project_params
+    params.require(:project).permit(:name, :description, :website_url, :linkedin_url, :twitter_url, :facebook_url, :instagram_url, :category_id, :tag_names)
+  end
 end

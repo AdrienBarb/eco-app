@@ -52,10 +52,22 @@ Rails.application.routes.draw do
     namespace :v1 do
       devise_for :users, controllers: { registrations: 'api/v1/registrations' }
 
+      resources :users, only: [:index, :show, :update]
+
       resources :projects do
         member do
           get :edit_roles
           patch :update_roles
+        end
+
+        member do
+          patch :upvote
+        end
+      end
+
+      resources :skills, only: [:index, :new, :create, :edit, :update, :destroy] do
+        member do
+          patch :recommend
         end
       end
 

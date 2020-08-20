@@ -1,6 +1,7 @@
 class Api::V1::SessionsController < Devise::RegistrationsController
-
   skip_before_action :verify_authenticity_token
+  respond_to :json
+
   def show
     current_user ? head(:ok) : head(:unauthorized)
   end
