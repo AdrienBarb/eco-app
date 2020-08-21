@@ -13,8 +13,6 @@ class Api::V1::AnswersController < Api::V1::ApplicationController
     end
   end
 
-  puts 'helloo'
-
   private
 
   def set_user

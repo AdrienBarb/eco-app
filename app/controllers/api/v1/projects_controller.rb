@@ -1,3 +1,4 @@
+
 class Api::V1::ProjectsController < Api::V1::ApplicationController
 
 
@@ -16,7 +17,6 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
 
   def create
     @project = @user.project.build(project_params)
-
     if @project.save
       Role.create(role: 'manager', user: @user, project: @project)
       render json: @project
