@@ -18,7 +18,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def upvote?
-    true
+    user
   end
 
   def update?
@@ -26,6 +26,7 @@ class ProjectPolicy < ApplicationPolicy
   end
 
   def destroy?
+    binding.pry
     user.try(:admin?) || record.roles.exists?(user_id: user, role: 'manager')
   end
 

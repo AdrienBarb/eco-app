@@ -30,7 +30,7 @@ class Api::V1::ApplicationController < ActionController::Base
   private
 
   def not_authorized
-    render json: { error: "You aren't allowed to do that."}
+    render json: { error: "You aren't allowed to do that."}, status: 422
   end
 
 end
