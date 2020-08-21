@@ -54,6 +54,8 @@ Rails.application.routes.draw do
 
       resources :users, only: [:index, :show, :update]
 
+      resources :users, only: [:create]
+
       resources :projects do
         member do
           get :edit_roles
@@ -63,16 +65,21 @@ Rails.application.routes.draw do
         member do
           patch :upvote
         end
+
+        resources :comments, only: [:create]
       end
 
-      resources :skills, only: [:index, :new, :create, :edit, :update, :destroy] do
+      resources :skills, only: [:index, :create, :update, :destroy] do
         member do
           patch :recommend
         end
       end
 
-    # resource :sessions, only: [:create, :destroy, :show]
-    resources :users, only: [:create]
+      resources :comments, only: [] do
+        resources :answers, only: [:new, :create]
+      end
+
+
     end
   end
 
