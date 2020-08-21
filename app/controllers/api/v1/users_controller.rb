@@ -2,15 +2,17 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
-    @users = User.all
+    @users = policy_scope(User)
     render json: @users
   end
 
   def show
+    authorize @user, :show?
     render json: @user
   end
 
   def update
+    authorize @user, :update?
     if @user.update(user_params)
       render json: @user
     else

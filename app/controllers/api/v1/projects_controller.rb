@@ -7,16 +7,18 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
 
 
   def index
-    @projects = Project.search((params[:q].present? ? params[:q] : '*')).records
+    @projects = policy_scope(Project)
     render json: @projects
   end
 
   def show
+    authorize @project, :show?
     render json: @project
   end
 
   def create
     @project = @user.project.build(project_params)
+    authorize @project, :create?
     if @project.save
       Role.create(role: 'manager', user: @user, project: @project)
       render json: @project
@@ -26,6 +28,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def update
+    authorize @project, :update?
     if @project.update(project_params)
       render json: @project
     else
@@ -34,6 +37,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def destroy
+    authorize @project, :destroy?
     if @project.destroy
       head :no_content
     else
@@ -42,6 +46,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def update_roles
+    authorize @project, :update_roles?
     role_data = params.fetch(:roles, [])
     role_data.each do |user_id, role_name|
       if role_name.present?
@@ -54,6 +59,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
   end
 
   def upvote
+    authorize @project, :upvote?
     @vote = @project.votes.build(user: @user)
     unless Vote.find_by(user: @user, project: @project).nil?
       render json: { error: "Vous avez deja voté" }, status: 422

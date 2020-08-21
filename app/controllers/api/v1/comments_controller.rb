@@ -6,6 +6,7 @@ class Api::V1::CommentsController < Api::V1::ApplicationController
 
   def create
     @comment = @project.comments.build(comment_params)
+    authorize @comment, :create?
     @comment.user = @user
     if @comment.save
       render json: @comment

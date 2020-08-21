@@ -1,5 +1,12 @@
 class Api::V1::ApplicationController < ActionController::Base
+  include Pundit
+
   skip_before_action :verify_authenticity_token
+
+  after_action :verify_authorized, except: [:index], unless: :devise_controller?
+  after_action :verify_policy_scoped, only: [:index], unless: :devise_controller?
+  rescue_from Pundit::NotAuthorizedError, with: :not_authorized
+
   before_action :authenticate_user!
 
   def current_user
@@ -18,6 +25,12 @@ class Api::V1::ApplicationController < ActionController::Base
 
   def auth_header
     request.headers['Authorization']
+  end
+
+  private
+
+  def not_authorized
+    render json: { error: "You aren't allowed to do that."}
   end
 
 end

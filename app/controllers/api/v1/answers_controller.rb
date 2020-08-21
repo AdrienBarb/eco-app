@@ -4,6 +4,7 @@ class Api::V1::AnswersController < Api::V1::ApplicationController
 
   def create
     @answer = @comment.answers.build(answer_params)
+    authorize @answer, :create?
     @answer.user = @user
     if @answer.save!
       SendNotification.new(@user, @answer).notify_watchers

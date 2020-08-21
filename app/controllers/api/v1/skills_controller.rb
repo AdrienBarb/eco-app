@@ -5,13 +5,14 @@ class Api::V1::SkillsController < Api::V1::ApplicationController
 
 
   def index
-    @skills = Skill.where(user: @user)
+    @skills = policy_scope(Skill)
     render json: @skills
   end
 
 
   def create
     @skill = @user.skills.build(skills_params)
+    authorize @skill, :create?
     if @skill.save
       render json: @skill
     else
@@ -21,6 +22,7 @@ class Api::V1::SkillsController < Api::V1::ApplicationController
 
 
   def update
+    authorize @skill, :update?
     if @skill.update(skills_params)
       render json: @skill
     else
@@ -29,11 +31,13 @@ class Api::V1::SkillsController < Api::V1::ApplicationController
   end
 
   def destroy
+    authorize @skill, :destroy?
     @skill.destroy
     head :no_content
   end
 
   def recommend
+    authorize @skill, :recommend?
     @recommendation = @skill.recommendations.build(user: @user)
     unless Recommendation.find_by(user: @user, skill: @skill).nil?
       render json: { error: "Vous ne pouvez pas recommender une compétences 2 fois" }, status: 422
