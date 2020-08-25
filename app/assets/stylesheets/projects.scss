@@ -1,3 +1,16 @@
 // Place all the styles related to the projects controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#projects-index {
+  max-width: 900px;
+  margin: 2rem auto 0 auto;
+}
+
+.search-items {
+  width: 60%;
+  margin: 1rem auto 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

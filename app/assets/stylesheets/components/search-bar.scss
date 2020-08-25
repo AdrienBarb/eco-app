@@ -1,0 +1,28 @@
+.search-bar {
+
+  background-color: white;
+  border-radius: 8px;
+  padding: 0.5rem;
+  border: 1px #B0E2F1 solid;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .search-field {
+
+    border: none;
+    flex: 1 0 auto;
+    outline: none;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  button {
+    border: none;
+    background-color: white;
+
+    i {
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}

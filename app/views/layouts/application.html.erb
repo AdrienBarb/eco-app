@@ -12,59 +12,38 @@
   <body>
 
 
+    <div id="nav-bar">
+      <div class="nav-bar-left">
+        <%= link_to 'Home', projects_path  %>
+        <% admins_only do %>
+          <%= link_to 'Admin', admin_root_path %>
+        <% end %>
+        <%= link_to 'Mon profil', user_path(current_user)  %>
+      </div>
+      <div class="nav-bar-right">
+        <% if user_signed_in? %>
+          <%= link_to 'se deconecter', destroy_user_session_path %>
+          <div class="current-user">
+            <%= image_tag(current_user.photo) if current_user.photo.attached? %>
+            <p><%= current_user.first_name %></p>
+          </div>
 
-    <div class="nav-bar-wraper">
-      <div class="nav-bar">
-        <div class="navigation-link">
-          <ul>
-            <li> <%= link_to 'login', new_user_session_path  %></li>
-            <li class="<%= "active" if current_page?("/") %>"><%= link_to 'Home', root_path %></li>
-            <li>
-              <%= form_tag projects_path, role: 'search', method: :get do |f| %>
-                <%= text_field_tag :q, params[:q] %>
-                <%= button_tag "search", name: nil %>
-              <% end %>
-            </li>
-            <% admins_only do %>
-              <%= link_to 'Admin', admin_root_path %>
-            <% end %>
-            <% if user_signed_in? %>
-              <li class="<%= "active" if current_page?(user_path(current_user)) %>"><%= link_to 'Mon profil', user_path(current_user)  %></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="connect-link">
-          <% if user_signed_in? %>
-            <div class="dropdown">
-              <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="connected-button">
-                  <% if current_user.avatar.url %>
-                    <%= image_tag current_user.avatar.url %>
-                  <% end %>
-                  <%= current_user.first_name %>
-                </div>
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-              </div>
-            </div>
-          <% else %>
-            <ul>
-
-            </ul>
-          <% end %>
-        </div>
+        <% else %>
+          <%= link_to "s'enregistrer", new_user_registration_path %>
+          <%= link_to 'login', new_user_session_path  %>
+        <% end %>
       </div>
     </div>
 
+    <% flash.each do |key, message| %>
+      <div class="alert alert-<%= key %>">
+          <%= message %>
+      </div>
+    <% end %>
 
-  <% flash.each do |key, message| %>
-    <div class="alert alert-<%= key %>">
-        <%= message %>
-    </div>
-  <% end %>
+    <%= yield %>
 
-      <%= yield %>
+
 
 
 

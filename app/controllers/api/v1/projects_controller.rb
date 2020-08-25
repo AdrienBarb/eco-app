@@ -18,6 +18,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
 
   def create
     @project = @user.project.build(project_params)
+    binding.pry
     authorize @project, :create?
     if @project.save
       Role.create(role: 'manager', user: @user, project: @project)
@@ -49,6 +50,7 @@ class Api::V1::ProjectsController < Api::V1::ApplicationController
     authorize @project, :update_roles?
     role_data = params.fetch(:roles, [])
     role_data.each do |user_id, role_name|
+      binding.pry
       if role_name.present?
         Role.find_by(user_id: user_id).delete
         @role = Role.new(user_id: user_id, project: @project, role: role_name)

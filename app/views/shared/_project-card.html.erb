@@ -1,12 +1,18 @@
-<div id="project-card">
-  <div class="project-info">
-    <%= link_to project_path(project) do %>
-      <h1> <%= project.name %> </h1>
-    <% end %>
-    <h4><%= project.category.category %></h4>
-    <p><%= project.description %></p>
-  </div>
-  <div class="project-vote">
-    <p><%= project.votes.count %></p>
+<div id="project-card-wrap">
+  <div class="project-card">
+    <div class="project-info-wrap">
+      <div class="project-info">
+        <%= link_to project_path(project) do %>
+          <h1> <%= project.name %> </h1>
+        <% end %>
+        <h4><%= project.category.category %></h4>
+      </div>
+      <div class="project-description">
+        <p><%= project.description %></p>
+      </div>
+    </div>
+    <div class="project-vote">
+      <p><%= project.votes.count %></p>
+    </div>
   </div>
 </div>

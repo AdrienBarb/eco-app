@@ -1,9 +1,24 @@
-<%= link_to 'Projets', projects_path %>
-<%= link_to 'Utilisateurs', users_path  %>
+
+<div class="search-items">
+  <div class="button-select">
+    <%= link_to 'Projets', projects_path %>
+  </div>
+
+  <div class="button-select">
+    <%= link_to 'Utilisateurs', users_path  %>
+  </div>
+
+  <%= form_tag projects_path, role: 'search', method: :get, class: 'search-bar' do |f| %>
+    <%= text_field_tag :q, params[:q], class: 'search-field' %>
+    <button><i class="fas fa-search"></i></button>
+  <% end %>
+</div>
 
 
 
-<div id="projects">
+
+
+<div id="projects-index">
   <% @projects.each do |project| %>
     <%= render 'shared/project-card', project: project %>
   <% end %>

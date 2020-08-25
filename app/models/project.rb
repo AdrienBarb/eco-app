@@ -21,6 +21,7 @@ class Project < ApplicationRecord
   end
 
   def tag_names=(names)
+    binding.pry
     @tag_names = names
     names.split.each do |name|
       self.tags << Tag.find_or_initialize_by(name: name)
