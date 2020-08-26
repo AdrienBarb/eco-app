@@ -1,6 +1,33 @@
-<% @users.each do |user| %>
-  <%= link_to user_path(user) do %>
-    <h1> <%= user.full_name %> </h1>
+
+<div class="search-items">
+  <div class="button-select">
+    <%= link_to 'Projets', projects_path %>
+  </div>
+
+  <div class="button-select">
+    <%= link_to 'Utilisateurs', users_path  %>
+  </div>
+</div>
+
+
+<div id="users-index-wrap">
+  <%= form_tag projects_path, role: 'search', method: :get, class: 'search-bar' do |f| %>
+    <%= text_field_tag :q, params[:q], class: 'search-field' %>
+    <button><i class="fas fa-search"></i></button>
   <% end %>
-  <h3> <%= user.title %> </h3>
-<% end %>
+
+
+  <h2>Les entrepreneurs du moment :</h2>
+
+  <div id="users-index">
+    <% @users.each do |user| %>
+      <%= render 'shared/user-card', user: user %>
+    <% end %>
+  </div>
+
+
+</div>
+
+
+
+

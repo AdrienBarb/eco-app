@@ -11,6 +11,7 @@ class Comment < ApplicationRecord
   def author_watches_me
     if user.present? && !self.watchers.include?(user)
       self.watchers << user
+      binding.pry
     end
   end
 end

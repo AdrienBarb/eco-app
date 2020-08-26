@@ -1,0 +1,25 @@
+
+
+<div class="user-card-wrap">
+  <div class="user-card">
+    <%= image_tag(user.photo) if user.photo.attached? %>
+    <div class="user-info-wrap">
+      <div class="user-info">
+        <%= link_to user_path(user) do %>
+          <h1> <%= user.full_name %> </h1>
+        <% end %>
+        <h3> <%= user.title %> </h3>
+        <div class="user-skill">
+          <% if user.skills.any? %>
+            <% user.skills.each do |skill| %>
+              <h4><%= skill.title %></h4>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="user-description">
+        <p> <%= user.description %> </p>
+      </div>
+    </div>
+  </div>
+</div>

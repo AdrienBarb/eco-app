@@ -18,11 +18,13 @@
         <% admins_only do %>
           <%= link_to 'Admin', admin_root_path %>
         <% end %>
-        <%= link_to 'Mon profil', user_path(current_user)  %>
+        <% if user_signed_in? %>
+          <%= link_to 'Mon profil', user_path(current_user)  %>
+        <% end %>
       </div>
       <div class="nav-bar-right">
         <% if user_signed_in? %>
-          <%= link_to 'se deconecter', destroy_user_session_path %>
+          <%= link_to 'Se deconecter', destroy_user_session_path, method: :delete %>
           <div class="current-user">
             <%= image_tag(current_user.photo) if current_user.photo.attached? %>
             <p><%= current_user.first_name %></p>
@@ -30,7 +32,7 @@
 
         <% else %>
           <%= link_to "s'enregistrer", new_user_registration_path %>
-          <%= link_to 'login', new_user_session_path  %>
+          <%= link_to 'Se connecter', new_user_session_path  %>
         <% end %>
       </div>
     </div>

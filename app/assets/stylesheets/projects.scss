@@ -2,13 +2,21 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-#projects-index {
+#projects-index-wrap {
   max-width: 900px;
   margin: 2rem auto 0 auto;
+
+  h2 {
+    margin-top: 3rem;
+  }
+
+  #projects-index {
+    margin-top: 2rem;
+  }
 }
 
 .search-items {
-  width: 60%;
+  width: 25%;
   margin: 1rem auto 0 auto;
   display: flex;
   justify-content: space-around;

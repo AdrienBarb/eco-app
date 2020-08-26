@@ -9,6 +9,7 @@ class Answer < ApplicationRecord
   def author_watches_comment
     if user.present? && !comment.watchers.include?(user)
       comment.watchers << user
+      binding.pry
     end
   end
 end

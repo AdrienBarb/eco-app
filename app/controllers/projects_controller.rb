@@ -5,7 +5,8 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, only: [:upvote]
 
   def index
-    @projects = Project.search((params[:q].present? ? params[:q] : '*')).records
+    @projects = policy_scope(Project)
+    @projects_creation_date = policy_scope(Project).order(created_at: :desc)
   end
 
   def show
