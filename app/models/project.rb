@@ -6,6 +6,7 @@ class Project < ApplicationRecord
   has_and_belongs_to_many :tags, uniq: true
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many_attached :images
 
   scope :filter_by_category, -> (category_id) { where category_id: category_id }
 
@@ -23,7 +24,6 @@ class Project < ApplicationRecord
   end
 
   def tag_names=(names)
-    binding.pry
     @tag_names = names
     names.split.each do |name|
       self.tags << Tag.find_or_initialize_by(name: name)
