@@ -3,8 +3,11 @@ class UsersController < ApplicationController
 
   def index
     @users = policy_scope(User)
-    # @users = User.filter_by_skill(params[:c]) if params[:c].present?
-    @skills = Skill.all
+    if params[:c].present?
+      ability = Ability.find(params[:c])
+      @users = ability.users
+    end
+    @abilities = Ability.all
   end
 
   def show

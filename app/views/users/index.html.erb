@@ -7,7 +7,7 @@
             <i class="fas fa-search"></i>
             <%= text_field_tag :q, params[:q], class: "input-field" %>
           </div>
-          <%= select_tag(:c, options_from_collection_for_select(@skills, :id, :title), {:style => "padding: 0.5rem; border-radius: 8px; "} )%>
+          <%= select_tag(:c, options_from_collection_for_select(@abilities, :id, :name), {:style => "padding: 0.5rem; border-radius: 8px; "} )%>
           <button id="button-valid">Valider</button>
         <% end %>
     </div>
