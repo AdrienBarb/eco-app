@@ -1,15 +1,56 @@
-<%= form_tag root_path, role: 'search', method: :get do %>
-  <%= text_field_tag :q, params[:q] %>
-  <%= button_tag "search" %>
-<% end %>
+
+<div id="home-wrap">
+  <div id="projects-home-wrap">
+
+    <div class="list-top">
+      <h2>Les meilleurs idées du moment :</h2>
+
+      <div class="button-select">
+        <%= link_to "Voir plus", projects_path %>
+      </div>
+    </div>
+
+    <div id="projects-home">
+      <% @projects.each do |project| %>
+        <%= render 'shared/project-card', project: project %>
+      <% end %>
+    </div>
+
+    <div class="list-top">
+      <h2>Les nouvelles idées :</h2>
+
+      <div class="button-select">
+        <%= link_to "Voir plus", projects_path %>
+      </div>
+    </div>
 
 
-<% @projects.each do |project| %>
-  <%= link_to project_path(project) do %>
-    <h1> <%= project.name %> </h1>
-  <% end %>
-  <p><%= project.description %></p>
-  <p><%= project.category.category %></p>
-<% end %>
 
-hellooo
+    <div id="projects-home">
+      <% @projects_creation_date.each do |project| %>
+        <%= render 'shared/project-card', project: project %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="users-home-wrap">
+
+    <div class="list-top">
+      <h2>Les entrepreneur du moment :</h2>
+
+      <div class="button-select">
+        <%= link_to "Voir plus", users_path %>
+      </div>
+    </div>
+
+
+    <div id="users-home">
+      <% @users.each do |user| %>
+        <%= render 'shared/small-user-card', user: user %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+

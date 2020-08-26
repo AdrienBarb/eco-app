@@ -1,6 +1,11 @@
 
 
 <div class="user-card-wrap">
+    <% if @user == current_user %>
+      <%= link_to edit_user_path, class: 'edit-link' do %>
+        <i class="fas fa-edit"></i>
+      <% end %>
+    <% end %>
   <div class="user-card">
     <%= image_tag(user.photo) if user.photo.attached? %>
     <div class="user-info-wrap">

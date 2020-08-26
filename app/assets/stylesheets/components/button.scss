@@ -10,13 +10,15 @@
 .button-select {
   font-weight: bold;
   border-radius: 6px;
-  padding: 0.5rem 2rem;
-  border: 1px solid #B0E2F1;
+  padding: 0.5rem;
+  border: 1px solid black;
   text-align: center;
-  display: inline;
+  display: flex;
+  align-items: center;
 
   a {
     text-decoration: none;
-    color: #B0E2F1;
+    color: black;
+    font-size: 12px;
   }
 }

@@ -14,7 +14,7 @@
 
     <div id="nav-bar">
       <div class="nav-bar-left">
-        <%= link_to 'Home', projects_path  %>
+        <%= link_to 'Home', root_path  %>
         <% admins_only do %>
           <%= link_to 'Admin', admin_root_path %>
         <% end %>
@@ -43,7 +43,10 @@
       </div>
     <% end %>
 
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
+
 
 
 

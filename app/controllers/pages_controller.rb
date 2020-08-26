@@ -3,13 +3,10 @@ class PagesController < ApplicationController
   skip_after_action :verify_authorized, :verify_policy_scoped
 
   def home
-    if params[:q].present?
-      @projects = Project.search(params[:q]).records
-      render "projects/index"
-    else
-      @projects = Project.all
-      render "projects/index"
-    end
+    projects = Project.all.sort_by { |project| project.votes.count }
+    @projects = projects.reverse
+    @projects_creation_date = policy_scope(Project).order(created_at: :desc)
+    @users = User.all
   end
 
 end

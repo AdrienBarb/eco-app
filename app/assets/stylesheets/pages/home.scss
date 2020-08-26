@@ -1,0 +1,25 @@
+#home-wrap {
+  display: flex;
+  justify-content: space-between;
+
+  h2 {
+    font-size: 16px;
+  }
+
+  #projects-home-wrap {
+    max-width: 50%;
+  }
+
+  #users-home-wrap {
+    flex: 1 0 auto;
+    margin-left: 8rem;
+  }
+}
+
+.list-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+

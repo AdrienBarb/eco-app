@@ -1,0 +1,10 @@
+
+<div class="small-user-card-wrap">
+  <div class="small-user-card">
+    <%= image_tag(user.photo) if user.photo.attached? %>
+    <div class="small-user-card-info">
+      <h1> <%= user.full_name %> </h1>
+      <h2> <%= user.title %> </h2>
+    </div>
+  </div>
+</div>

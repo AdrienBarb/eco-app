@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = policy_scope(Project)
-    @projects_creation_date = policy_scope(Project).order(created_at: :desc)
+
   end
 
   def show

@@ -1,54 +1,45 @@
 
-<div class="profil-card">
-  <% if @user == current_user %>
-    <%= link_to edit_user_path, class: 'edit-link' do %>
-      <i class="fas fa-edit"></i>
+<div id="user-show-wrap">
+  <%= render 'shared/user-card', user: @user %>
+
+<div id="user-show-projects-wrap">
+
+  <div class="user-show-projects-top">
+    <h2>Projets:</h2>
+    <% if @user == current_user %>
+      <%= link_to 'Créer un projet', new_project_path  %>
     <% end %>
-  <% end %>
-  <div class="profil-card-left">
-    <div class="picture">
-        <%= image_tag(@user.photo) if @user.photo.attached? %>
-    </div>
-    <div class="user-info">
-      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
-      <h3><%= @user.title %></h3>
-      <h4><%= @user.city %></h4>
-    </div>
   </div>
-  <span class="line"></span>
-  <div class="profil-card-right">
-    <p><%= @user.description %></p>
+
+  <div id="user-show-projects">
+    <h1>Mes projets:</h1>
+
+    <% @projects.each do |project| %>
+      <%= render 'shared/project-card', project: project %>
+    <% end %>
   </div>
+
 </div>
 
-
-<div id="user-show-projects">
-  <h1>Mes projets:</h1>
-  <% if @user == current_user %>
-    <%= link_to 'Créer un projet', new_project_path  %>
-  <% end %>
-  <% @projects.each do |project| %>
-    <%= render 'shared/project-card', project: project %>
-  <% end %>
-</div>
-
-<div id="skills">
-  <% if @user == current_user %>
-    <%= link_to 'Editer mes compétences', skills_path %>
-  <% end %>
-  <h1>Mes compétences:</h1>
-  <% if @user.skills.any? %>
-    <% @user.skills.each do |skill| %>
-      <h2>  <%= skill.title %></h2>
-      <p> <%= skill.rate %> </p>
-      <p> <%= skill.description %> </p>
-      <% if skill.recommendations.any? %>
-        <p><%= skill.recommendations[0].user.full_name %> et <%= skill.recommendations.count - 1 %> autres utilisateurs ont recommendé cette compétences</p>
+  <div id="skills">
+    <% if @user == current_user %>
+      <%= link_to 'Editer mes compétences', skills_path %>
+    <% end %>
+    <h1>Mes compétences:</h1>
+    <% if @user.skills.any? %>
+      <% @user.skills.each do |skill| %>
+        <h2>  <%= skill.title %></h2>
+        <p> <%= skill.rate %> </p>
+        <p> <%= skill.description %> </p>
+        <% if skill.recommendations.any? %>
+          <p><%= skill.recommendations[0].user.full_name %> et <%= skill.recommendations.count - 1 %> autres utilisateurs ont recommendé cette compétences</p>
+        <% end %>
+        <%= link_to 'Recommander', recommend_skill_path(skill), method: :patch %>
       <% end %>
-      <%= link_to 'Recommander', recommend_skill_path(skill), method: :patch %>
     <% end %>
-  <% end %>
+  </div>
 </div>
+
 
 
 
