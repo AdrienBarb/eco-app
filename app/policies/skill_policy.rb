@@ -1,7 +1,7 @@
 class SkillPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user: user)
+      user.skills
     end
   end
 

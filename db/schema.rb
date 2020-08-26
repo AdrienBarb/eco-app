@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_073109) do
+ActiveRecord::Schema.define(version: 2020_08_26_180151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abilities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -114,10 +120,12 @@ ActiveRecord::Schema.define(version: 2020_08_13_073109) do
   create_table "skills", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rate"
+    t.bigint "user_id"
+    t.bigint "ability_id"
+    t.index ["ability_id"], name: "index_skills_on_ability_id"
     t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
@@ -169,6 +177,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_073109) do
   add_foreign_key "recommendations", "users"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
+  add_foreign_key "skills", "abilities"
   add_foreign_key "skills", "users"
   add_foreign_key "votes", "projects"
   add_foreign_key "votes", "users"

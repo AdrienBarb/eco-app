@@ -6,6 +6,9 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = policy_scope(Project)
+    @projects = Project.filter_by_category(params[:c]) if params[:c].present?
+
+    @categories = Category.all
 
   end
 

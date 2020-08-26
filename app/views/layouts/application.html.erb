@@ -24,14 +24,14 @@
       </div>
       <div class="nav-bar-right">
         <% if user_signed_in? %>
-          <%= link_to 'Se deconecter', destroy_user_session_path, method: :delete %>
+          <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete %>
           <div class="current-user">
             <%= image_tag(current_user.photo) if current_user.photo.attached? %>
             <p><%= current_user.first_name %></p>
           </div>
 
         <% else %>
-          <%= link_to "s'enregistrer", new_user_registration_path %>
+          <%= link_to "S'enregistrer", new_user_registration_path %>
           <%= link_to 'Se connecter', new_user_session_path  %>
         <% end %>
       </div>

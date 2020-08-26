@@ -2,9 +2,6 @@
   display: flex;
   justify-content: space-between;
 
-  h2 {
-    font-size: 16px;
-  }
 
   #projects-home-wrap {
     max-width: 50%;
@@ -21,5 +18,9 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+
+    h2 {
+    font-size: 22px;
+  }
 }
 

@@ -7,6 +7,8 @@ class Project < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  scope :filter_by_category, -> (category_id) { where category_id: category_id }
+
   attr_accessor :tag_names
 
   include Elasticsearch::Model

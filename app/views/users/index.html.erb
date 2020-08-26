@@ -1,20 +1,29 @@
+<div id="users-index-page-wrap">
+  <div id="search-area-wrap">
+      <h2>Rechercher:</h2>
 
+        <%= form_tag users_path, role: 'search', method: :get, class: 'search-area' do |f| %>
+          <div class="search-field">
+            <i class="fas fa-search"></i>
+            <%= text_field_tag :q, params[:q], class: "input-field" %>
+          </div>
+          <%= select_tag(:c, options_from_collection_for_select(@skills, :id, :title), {:style => "padding: 0.5rem; border-radius: 8px; "} )%>
+          <button id="button-valid">Valider</button>
+        <% end %>
+    </div>
 
-<div id="users-index-wrap">
-  <%= form_tag projects_path, role: 'search', method: :get, class: 'search-bar' do |f| %>
-    <%= text_field_tag :q, params[:q], class: 'search-field' %>
-    <button><i class="fas fa-search"></i></button>
-  <% end %>
+  <div id="users-index-wrap">
 
+    <div id="users-index">
+      <% @users.each do |user| %>
+        <%= render 'shared/user-card', user: user %>
+      <% end %>
+    </div>
 
-  <div id="users-index">
-    <% @users.each do |user| %>
-      <%= render 'shared/user-card', user: user %>
-    <% end %>
   </div>
-
-
 </div>
+
+
 
 
 

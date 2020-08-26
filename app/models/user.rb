@@ -8,8 +8,11 @@ class User < ApplicationRecord
 
   has_many :project, dependent: :destroy
   has_many :roles, dependent: :destroy
-  has_many :skills, dependent: :destroy
+  has_many :skills
+  has_many :abilities, through: :skills
   has_one_attached :photo
+
+  scope :filter_by_skill, -> (skill_id) { where skill_id: skill_id }
 
   def active_for_authentication?
     super && archived_at.nil?

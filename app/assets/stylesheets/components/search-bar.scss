@@ -1,20 +1,33 @@
-.search-bar {
+.search-area {
 
   background-color: white;
   border-radius: 8px;
-  padding: 0.5rem;
-  border: 1px #B0E2F1 solid;
-  width: 30%;
+  padding: 0.5px 0.5px 0.5px;
+  max-width: 70%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   .search-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 0.3rem;
+  }
+
+  .input-field {
 
     border: none;
     flex: 1 0 auto;
     outline: none;
     color: rgba(0, 0, 0, 0.5);
+  }
+
+  .select-box {
+    padding: 0.2rem;
+    border-radius: 8px;
   }
 
   button {

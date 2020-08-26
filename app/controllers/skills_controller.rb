@@ -16,6 +16,7 @@ class SkillsController < ApplicationController
 
   def create
     @skill = @user.skills.build(skills_params)
+    @skill.ability = create_ability(params[:skill][:title])
     authorize @skill, :create?
     if @skill.save
       flash[:notice] = "Votre compétence a bien été crée !"
@@ -71,5 +72,10 @@ class SkillsController < ApplicationController
 
   def skills_params
     params.require(:skill).permit(:title, :description, :rate)
+  end
+
+  def create_ability(ability_params)
+    ability = ability_params.capitalize
+    Ability.find_or_initialize_by(name: ability)
   end
 end

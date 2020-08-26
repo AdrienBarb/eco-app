@@ -1,19 +1,41 @@
+<div id="projects-index-page-wrap">
+
+  <div id="search-area-wrap">
+
+    <h2>Rechercher:</h2>
+
+      <%= form_tag projects_path, role: 'search', method: :get, class: 'search-area' do |f| %>
+
+        <div class="search-field">
+          <i class="fas fa-search"></i>
+          <%= text_field_tag :q, params[:q], class: "input-field" %>
+        </div>
 
 
-  <%= form_tag projects_path, role: 'search', method: :get, class: 'search-bar' do |f| %>
-    <%= text_field_tag :q, params[:q], class: 'search-field' %>
-    <button><i class="fas fa-search"></i></button>
-  <% end %>
+        <%= select_tag(:c, options_from_collection_for_select(@categories, :id, :category), {:style => "padding: 0.5rem; border-radius: 8px; "} )%>
+
+        <button id="button-valid">Valider</button>
+
+      <% end %>
 
 
-<div id="projects-index-wrap">
-
-  <div id="projects-index">
-    <% @projects.each do |project| %>
-      <%= render 'shared/project-card', project: project %>
-    <% end %>
   </div>
+
+
+
+  <div id="projects-index-wrap">
+
+    <div id="projects-index">
+      <% @projects.each do |project| %>
+        <%= render 'shared/project-card', project: project %>
+      <% end %>
+    </div>
+  </div>
+
+
 </div>
+
+
 
 
 
