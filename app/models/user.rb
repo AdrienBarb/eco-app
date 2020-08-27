@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :project, dependent: :destroy
   has_many :roles, dependent: :destroy
-  has_many :skills
+  has_many :skills, dependent: :destroy
   has_many :abilities, through: :skills
   has_one_attached :photo
 

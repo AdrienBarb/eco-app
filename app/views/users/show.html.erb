@@ -4,15 +4,14 @@
 
 <div id="user-show-projects-wrap">
 
-  <div class="user-show-projects-top">
+  <div class="user-show-list-top">
     <h2>Projets:</h2>
     <% if @user == current_user %>
-      <%= link_to 'Créer un projet', new_project_path  %>
+      <%= link_to 'Créer un projet', new_project_path, class: 'button-select'  %>
     <% end %>
   </div>
 
   <div id="user-show-projects">
-    <h1>Mes projets:</h1>
 
     <% @projects.each do |project| %>
       <%= render 'shared/project-card', project: project %>
@@ -21,20 +20,17 @@
 
 </div>
 
-  <div id="skills">
-    <% if @user == current_user %>
-      <%= link_to 'Editer mes compétences', skills_path %>
-    <% end %>
-    <h1>Mes compétences:</h1>
+  <div id="user-show-skills-wrap">
+    <div class="user-show-list-top">
+      <h2>Compétences:</h2>
+      <% if @user == current_user %>
+        <%= link_to 'Editer mes compétences', skills_path, class: 'button-select' %>
+      <% end %>
+    </div>
+
     <% if @user.skills.any? %>
       <% @user.skills.each do |skill| %>
-        <h2>  <%= skill.title %></h2>
-        <p> <%= skill.rate %> </p>
-        <p> <%= skill.description %> </p>
-        <% if skill.recommendations.any? %>
-          <p><%= skill.recommendations[0].user.full_name %> et <%= skill.recommendations.count - 1 %> autres utilisateurs ont recommendé cette compétences</p>
-        <% end %>
-        <%= link_to 'Recommander', recommend_skill_path(skill), method: :patch %>
+        <%= render 'shared/skill-card', skill: skill %>
       <% end %>
     <% end %>
   </div>

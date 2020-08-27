@@ -1,0 +1,21 @@
+<div class="skill-card-wrap">
+  <div class="skill-card">
+    <div class="skill">
+      <div class="skill-info">
+        <h2>  <%= skill.title %></h2>
+        <p> <%= skill.description %> </p>
+      </div>
+      <div class="skill-rate">
+        <p> <%= skill.rate %> </p>
+      </div>
+    </div>
+
+    <div class="skill-recommendation">
+      <% if skill.recommendations.any? %>
+        <p><%= skill.recommendations[0].user.full_name %> et <%= skill.recommendations.count - 1 %> autres utilisateurs ont recommendé cette compétences</p>
+      <% end %>
+      <%= link_to 'Recommander', recommend_skill_path(skill), method: :patch, class: 'button-select' %>
+    </div>
+
+  </div>
+</div>
