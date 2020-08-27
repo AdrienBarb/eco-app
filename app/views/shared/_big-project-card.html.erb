@@ -1,0 +1,39 @@
+<div class="big-project-card">
+  <div class="big-project-card-info">
+    <div class="big-project-card-main-info">
+      <h1><%= project.name %></h1>
+      <h4><%= project.category.category %></h4>
+      <% if project.tags.any? %>
+        <% project.tags.each do |tag| %>
+          <%= render "tags/tag", tag: tag, project: project %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="big-project-card-images">
+      <%= image_tag(project.images[0], :class => "img1") %>
+      <%= image_tag(project.images[1], :class => "img2") %>
+      <%= image_tag(project.images[2], :class => "img3") %>
+      <%= image_tag(project.images[3], :class => "img4") %>
+    </div>
+    <div class="big-project-card-description">
+      <p><%= project.description %></p>
+    </div>
+    <div class="big-project-card-user-link">
+      <% if policy(project).update? %>
+        <%= link_to 'Modifier mon projet', edit_project_path(project), class: 'button-select' %>
+      <% end %>
+      <% if policy(project).destroy? %>
+        <%= link_to "Suprimer", project_path(project), method: :delete, data: { confirm: "Are you sure you want to delete this ticket?"}, class: 'button-select' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="big-project-card-vote">
+    <div class="big-project-card-vote-count">
+      <p><%= project.votes.count %></p>
+    </div>
+    <%= link_to 'Voter', upvote_project_path(@project), method: :patch %>
+  </div>
+</div>
+
+
+

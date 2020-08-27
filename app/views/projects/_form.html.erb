@@ -1,52 +1,64 @@
-<%= form_for @project do |f| %>
+<div class="form-wrapper">
+  <div class="form">
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <h2>Créer un projet</h2>
+
+    <%= form_for @project do |f| %>
+
+      <div class="field">
+
+        <%= f.text_field :name, placeholder: 'Nom du projet', class: 'form-field' %>
+      </div>
+
+      <div class="field">
+
+        <%= f.text_area :description, placeholder: 'Description du projet', class: 'form-field' %>
+      </div>
+
+      <div class="field">
+
+        <%= f.text_field :website_url, placeholder: 'URL du site internet', class: 'form-field' %>
+      </div>
+
+      <div class="field">
+
+        <%= f.text_field :linkedin_url, placeholder: 'URL Linkedin', class: 'form-field' %>
+      </div>
+
+      <div class="field">
+
+        <%= f.text_field :twitter_url, placeholder: 'URL Twitter', class: 'form-field' %>
+      </div>
+
+      <div class="field">
+
+        <%= f.text_field :facebook_url, placeholder: 'URL Facebook', class: 'form-field' %>
+      </div>
+
+      <div class="field">
+
+        <%= f.text_field :instagram_url, placeholder: 'URL Instagram', class: 'form-field' %>
+      </div>
+
+      <div class="field">
+
+        <%= f.text_field :tag_names, placeholder: 'Tags', class: 'form-field' %>
+      </div>
+
+      <div class="field">
+        <%= f.label :images %>
+        <%= f.file_field :images, :multiple => true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :category_id %>
+        <%= f.select :category_id, @categories.map { |s| [s.category, s.id] } %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Valider", id: 'button-valid'%>
+      </div>
+    <% end %>
+
   </div>
-
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :website_url %><br>
-    <%= f.text_field :website_url %>
-  </div>
-
-  <div class="field">
-    <%= f.label :linkedin_url %><br>
-    <%= f.text_field :linkedin_url %>
-  </div>
-
-  <div class="field">
-    <%= f.label :twitter_url %><br>
-    <%= f.text_field :twitter_url %>
-  </div>
-
-  <div class="field">
-    <%= f.label :facebook_url %><br>
-    <%= f.text_field :facebook_url %>
-  </div>
-
-  <div class="field">
-    <%= f.label :instagram_url %><br>
-    <%= f.text_field :instagram_url %>
-  </div>
-
-  <div class="field">
-    <%= f.label :tag_names %><br>
-    <%= f.text_field :tag_names %>
-  </div>
-
-  <%= f.label :images %>
-  <%= f.file_field :images, :multiple => true %>
-
-  <%= f.label :category_id %>
-  <%= f.select :category_id, @categories.map { |s| [s.category, s.id] } %>
-
-  <div class="actions">
-    <%= f.submit "Valider"%>
-  </div>
-<% end %>
+</div>
