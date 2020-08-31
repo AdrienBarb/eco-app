@@ -14,6 +14,8 @@ class ProjectsController < ApplicationController
 
   def show
     authorize @project, :show?
+    @comment = Comment.new
+    @answer = Answer.new
   end
 
   def new

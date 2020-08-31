@@ -8,12 +8,20 @@
     <div class="comment">
       <p><%= comment.comment %></p>
     </div>
-    <div class="comment-link">
-      <%= link_to 'Répondre', new_comment_answer_path(comment), class: 'button-select' %>
-    </div>
+
+    <%= form_for [comment, answer] do |f| %>
+      <div class="answer-form">
+        <div class="field">
+          <%= f.text_field :answer, placeholder: 'Ecrire une réponses', class: 'answer-input' %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Valider", id: 'button-valid'%>
+        </div>
+      </div>
+    <% end %>
 
     <div class="answers-wrap">
-      <h2>Réponses:</h2>
       <% if comment.answers.any? %>
           <% comment.answers.each do |answer| %>
             <%= render 'shared/answer-card', answer: answer %>

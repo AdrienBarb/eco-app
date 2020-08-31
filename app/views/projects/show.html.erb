@@ -19,15 +19,26 @@
 
 
   <div class="project-show-comment-wrap">
-    <div class="project-show-list-top">
-      <h2>Commentaires:</h2>
-      <%= link_to 'Laisser un commentaire', new_project_comment_path(@project), class: 'button-select' %>
-    </div>
+    <h2>Commentaires:</h2>
 
     <div class="project-show-comment">
+
+      <%= form_for [@project, @comment] do |f| %>
+        <div class="comment-form">
+          <div class="field">
+            <%= f.text_field :comment, placeholder: 'Ecrire un commentaire', class: 'comment-input' %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Valider", id: 'button-valid'%>
+          </div>
+        </div>
+      <% end %>
+
+
       <% if @project.comments.any? %>
           <% @project.comments.each do |comment| %>
-              <%= render 'shared/comment-card', comment: comment %>
+              <%= render 'shared/comment-card', comment: comment, answer: @answer %>
           <% end %>
       <% end %>
     </div>
@@ -37,6 +48,8 @@
 
 
 </div>
+
+
 
 
 

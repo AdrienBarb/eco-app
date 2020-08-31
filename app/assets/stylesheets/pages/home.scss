@@ -4,7 +4,7 @@
 
 
   #projects-home-wrap {
-    width: 50%;
+    width: 55%;
   }
 
   #users-home-wrap {
@@ -21,6 +21,20 @@
 
     h2 {
     font-size: 22px;
+  }
+}
+
+#projects-home {
+    a {
+      text-decoration: none;
+      color: black;
+    }
+}
+
+#users-home {
+  a {
+    text-decoration: none;
+    color: black;
   }
 }
 

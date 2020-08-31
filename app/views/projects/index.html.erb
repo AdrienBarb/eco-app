@@ -27,7 +27,9 @@
 
     <div id="projects-index">
       <% @projects.each do |project| %>
-        <%= render 'shared/project-card', project: project %>
+        <%= link_to project_path(project) do %>
+          <%= render 'shared/project-card', project: project %>
+        <% end %>
       <% end %>
     </div>
   </div>

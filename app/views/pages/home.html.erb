@@ -9,7 +9,9 @@
 
     <div id="projects-home">
       <% @projects.each do |project| %>
-        <%= render 'shared/project-card', project: project %>
+        <%= link_to project_path(project) do %>
+          <%= render 'shared/project-card', project: project %>
+        <% end %>
       <% end %>
     </div>
 
@@ -22,7 +24,9 @@
 
     <div id="projects-home">
       <% @projects_creation_date.each do |project| %>
-        <%= render 'shared/project-card', project: project %>
+        <%= link_to project_path(project) do %>
+          <%= render 'shared/project-card', project: project %>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -37,7 +41,9 @@
 
     <div id="users-home">
       <% @users.each do |user| %>
-        <%= render 'shared/small-user-card', user: user %>
+        <%= link_to user_path(user) do %>
+          <%= render 'shared/small-user-card', user: user %>
+        <% end %>
       <% end %>
     </div>
   </div>
